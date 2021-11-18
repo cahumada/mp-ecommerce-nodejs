@@ -50,7 +50,7 @@
                 type="button"
               >
                 <h2 class="as-filter-button-text">
-                  Smartphones
+                  Compra Finalizada
                 </h2>
               </button>
 
@@ -85,12 +85,11 @@
                     <div class="as-tilegallery-element as-image-selected">
                       <div class=""></div>
                       <img
-                        src="./assets/003.jpg"
+                        src="./assets/congrats.png"
                         class="ir ir item-image as-producttile-image"
                         alt=""
                         width="445"
                         height="445"
-                        style="content:-webkit-image-set(url({{img}}) 2x);"
                       />
                     </div>
 
@@ -111,28 +110,11 @@
               >
                 <div class="as-producttile-title">
                   <h3 class="as-producttile-name">
-                    <p class="as-producttile-tilelink">
-                      <span data-ase-truncate="2"> {{title}} </span>
-                    </p>
-
+                    Tu pedido fue procesado con éxito:
+                    {{payment_id}}
                   </h3>
                 </div>
-                <h3>
-                  Precio:
-                  {{price}}
-                </h3>
-                <h3>
-                  Cantidad:
-                  {{unit}}
-                </h3>
               </div>
-              <form action="/payment" method="POST">
-                <input type="hidden" name="img" value={{img}} />
-                <input type="hidden" id="title" name="title" value={{title}} />
-                <input type="hidden" id="price" name="price" value={{price}} />
-                <input type="hidden" id="unit" name="unit" value={{unit}} />
-                <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
-              </form>
             </div>
           </div>
         </div>
