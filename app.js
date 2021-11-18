@@ -120,8 +120,7 @@ app.get("/pending", function (req, res) {
 app.post("/notifications", urlencodedParser, function (req, res) {
   console.log(req);
 
-  notifications.push(req)
-  alert("notifications: " + JSON.stringify(req));
+  res.render("notifications", req.body);
 });
 
 app.listen(port);
