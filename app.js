@@ -16,6 +16,8 @@ mercadopago.configure({
   integrator_id: "dev_24c65fb163bf11ea96500242ac130004",
 });
 
+var notifications = [];
+
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
@@ -117,6 +119,8 @@ app.get("/pending", function (req, res) {
 
 app.post("/notifications", urlencodedParser, function (req, res) {
   console.log(req);
+
+  notifications.push(req)
   alert("notifications: " + JSON.stringify(req));
 });
 

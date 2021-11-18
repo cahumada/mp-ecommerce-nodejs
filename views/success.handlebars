@@ -108,11 +108,12 @@
                 class="as-producttile-titlepricewraper"
                 style="min-height: 128px;"
               >
-                <div class="as-producttile-title">
+                <br class="as-producttile-title">
                   <h3 class="as-producttile-name">
                     Tu pedido fue procesado con éxito:
                     {{payment_id}}
                   </h3>
+                  <br/>
                   <a
                     href="/"
                     class="as-filter-option"
@@ -132,6 +133,9 @@
                     </span>
                   </a>
                 </div>
+
+                <br>
+                {{JSON.stringify(notifications)}}
               </div>
             </div>
           </div>
