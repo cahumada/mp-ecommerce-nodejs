@@ -13,6 +13,7 @@ const mercadopago = require("mercadopago");
 mercadopago.configure({
   access_token:
     "APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398",
+  integrator_id: "dev_24c65fb163bf11ea96500242ac130004",
 });
 
 app.engine("handlebars", exphbs());
@@ -68,6 +69,8 @@ app.post("/payment", urlencodedParser, function (req, res) {
       pending: "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/pending",
     },
     auto_return: "approved",
+    notification_url:
+      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications",
     payment_methods: {
       excluded_payment_methods: [
         {
@@ -110,6 +113,11 @@ app.get("/failure", function (req, res) {
 
 app.get("/pending", function (req, res) {
   res.render("pending", req.query);
+});
+
+app.post("/notifications", urlencodedParser, function (req, res) {
+  console.log(req);
+  alert("notifications: " + JSON.stringify(req));
 });
 
 app.listen(port);
