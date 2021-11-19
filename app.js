@@ -118,7 +118,11 @@ app.get("/pending", function (req, res) {
 });
 
 app.post("/notifications", urlencodedParser, function (req, res) {
-  res.jsonp(req.body);
+  res.render("notifications", req.body);
+});
+
+app.get("/notifications", function (req, res) {
+  res.jsonp(req);
 });
 
 app.listen(port);
