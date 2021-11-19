@@ -118,9 +118,9 @@ app.get("/pending", function (req, res) {
 });
 
 app.post("/notifications", urlencodedParser, function (req, res) {
-  notifications.push(JSON.stringify(req));
+  notifications.push(JSON.stringify(req.body));
 
-  res.render("notifications");
+  res.sendStatus(200);
 });
 
 app.get("/notifications", function (req, res) {
