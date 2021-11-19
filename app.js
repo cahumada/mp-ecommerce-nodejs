@@ -72,7 +72,7 @@ app.post("/payment", urlencodedParser, function (req, res) {
     },
     auto_return: "approved",
     notification_url:
-      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications",
+      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications?source_news=webhooks",
     payment_methods: {
       excluded_payment_methods: [
         {
@@ -118,7 +118,7 @@ app.get("/pending", function (req, res) {
 });
 
 app.post("/notifications", urlencodedParser, function (req, res) {
-  notifications.push(JSON.stringify(req.body));
+  notifications.push(req);
 
   res.sendStatus(200);
 });
