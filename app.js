@@ -76,7 +76,7 @@ app.post("/payment", urlencodedParser, function (req, res) {
     },
     auto_return: "approved",
     notification_url:
-      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications",
+      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications?source_news=webhooks",
     payment_methods: {
       excluded_payment_methods: [
         {
@@ -125,14 +125,11 @@ app.post("/notifications", urlencodedParser, function (req, res) {
   //notifications.push(res.jsonp(req));
 
   console.error('WEBHOOKS', JSON.stringify(req.body));
-  console.error('WEBHOOKS-q', JSON.stringify(req.query));
-//   fs.writeFile(path, res.jsonp(req), err => {
-//     if (err) {
-//       console.error(err)
-//       return
-//     }
-//     //file written successfully
-//   })
+  console.error('WEBHOOKS-id', req.query['data.id']);
+
+  mercadopago.payment.findById(req.query['data.id'], {}, function(response) {
+    console.error('Payment-FindId', JSON.stringify(response));
+  });
 
   res.sendStatus(200);
 });
