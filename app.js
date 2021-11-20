@@ -8,6 +8,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
 
+let path = 'notification.txt';
+
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
 // Agrega credenciales
@@ -120,7 +122,16 @@ app.get("/pending", function (req, res) {
 });
 
 app.post("/notifications", urlencodedParser, function (req, res) {
-  notifications.push(res.jsonp(req));
+  //notifications.push(res.jsonp(req));
+
+  console.log('WEBHOOKS', res.jsonp(req));
+//   fs.writeFile(path, res.jsonp(req), err => {
+//     if (err) {
+//       console.error(err)
+//       return
+//     }
+//     //file written successfully
+//   })
 
   res.sendStatus(200);
 });
