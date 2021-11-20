@@ -33,7 +33,7 @@ app.get("/detail", function (req, res) {
   res.render("detail", req.query);
 });
 
-app.post("/payment", bodyParser.urlencoded({ extended: true }), function (req, res) {
+app.post("/payment", urlencodedParser, function (req, res) {
   // console.log("payment-req", req.body);
 
   let preference = {
@@ -118,16 +118,17 @@ app.get("/pending", function (req, res) {
   res.render("pending", req.query);
 });
 
-app.post("/notifications", urlencodedParser, function (req, res) {
+app.post("/notifications", function (req, res) {
 
-  console.error('WEBHOOKS', JSON.stringify(req.query));
+  console.error('WEBHOOKS-q', JSON.stringify(req.query));
+  console.error('WEBHOOKS-b', JSON.stringify(req.body));
   console.error('WEBHOOKS-id', req.query['data.id']);
 
   mercadopago.payment.findById(req.query['data.id'], function(response) {
     console.error('Payment-FindId', JSON.stringify(response));
   });
 
-  res.sendStatus(200);
+  //res.sendStatus(200);
 });
 
 app.get("/notifications", function (req, res) {
