@@ -1,14 +1,11 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-const fs = require('fs')
 var port = process.env.PORT || 3000;
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
-
-let path = 'notification.txt';
 
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
@@ -19,10 +16,10 @@ mercadopago.configure({
   integrator_id: "dev_24c65fb163bf11ea96500242ac130004",
 });
 
-var notifications = [];
-
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
+
+app.use(bodyParser.json());
 
 app.use(express.static("assets"));
 
@@ -36,7 +33,7 @@ app.get("/detail", function (req, res) {
   res.render("detail", req.query);
 });
 
-app.post("/payment", urlencodedParser, function (req, res) {
+app.post("/payment", bodyParser.urlencoded({ extended: true }), function (req, res) {
   // console.log("payment-req", req.body);
 
   let preference = {
@@ -122,12 +119,11 @@ app.get("/pending", function (req, res) {
 });
 
 app.post("/notifications", urlencodedParser, function (req, res) {
-  //notifications.push(res.jsonp(req));
 
-  console.error('WEBHOOKS', JSON.stringify(req.body));
+  console.error('WEBHOOKS', JSON.stringify(req.query));
   console.error('WEBHOOKS-id', req.query['data.id']);
 
-  mercadopago.payment.findById(req.query['data.id'], {}, function(response) {
+  mercadopago.payment.findById(req.query['data.id'], function(response) {
     console.error('Payment-FindId', JSON.stringify(response));
   });
 
