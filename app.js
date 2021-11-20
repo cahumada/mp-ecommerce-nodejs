@@ -124,11 +124,7 @@ app.post("/notifications", function (req, res) {
   console.error('WEBHOOKS-b', JSON.stringify(req.body));
   console.error('WEBHOOKS-id', req.query['data.id']);
 
-  mercadopago.payment.findById(req.query['data.id'], function(response) {
-    console.error('Payment-FindId', JSON.stringify(response));
-  });
-
-  //res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 app.get("/notifications", function (req, res) {
