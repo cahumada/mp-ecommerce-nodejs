@@ -76,7 +76,7 @@ app.post("/payment", urlencodedParser, function (req, res) {
     },
     auto_return: "approved",
     notification_url:
-      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications?source_news=webhooks",
+      "https://cahumada-mp-ecommerce-nodejs.herokuapp.com/notifications",
     payment_methods: {
       excluded_payment_methods: [
         {
