@@ -125,6 +125,7 @@ app.post("/notifications", urlencodedParser, function (req, res) {
   //notifications.push(res.jsonp(req));
 
   console.error('WEBHOOKS', JSON.stringify(req.body));
+  console.error('WEBHOOKS-q', JSON.stringify(req.query));
 //   fs.writeFile(path, res.jsonp(req), err => {
 //     if (err) {
 //       console.error(err)
