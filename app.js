@@ -124,7 +124,7 @@ app.get("/pending", function (req, res) {
 app.post("/notifications", urlencodedParser, function (req, res) {
   //notifications.push(res.jsonp(req));
 
-  console.log('WEBHOOKS', res.jsonp(req));
+  console.error('WEBHOOKS', JSON.stringify(req.body));
 //   fs.writeFile(path, res.jsonp(req), err => {
 //     if (err) {
 //       console.error(err)
