@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+const fs = require('fs')
 var port = process.env.PORT || 3000;
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -41,6 +42,7 @@ app.post("/payment", urlencodedParser, function (req, res) {
       {
         id: "1234",
         title: req.body.title,
+        description: "Dispositivo móvil de Tienda e-commerce",
         currency_id: "ARS",
         unit_price: parseFloat(req.body.price),
         picture_url: new URL(
@@ -118,7 +120,7 @@ app.get("/pending", function (req, res) {
 });
 
 app.post("/notifications", urlencodedParser, function (req, res) {
-  notifications.push(req);
+  notifications.push(res.jsonp(req));
 
   res.sendStatus(200);
 });
